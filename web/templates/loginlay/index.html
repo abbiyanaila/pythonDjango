@@ -1,0 +1,13 @@
+<html>
+
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+
+    {% include 'loginlay/head.html' %}
+</head>
+
+<body class="hold-transition login-page">
+       {% block content %}{% endblock %}
+</body>
+
+</html>

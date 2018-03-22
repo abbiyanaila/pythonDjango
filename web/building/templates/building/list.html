@@ -1,0 +1,54 @@
+<!--# meng extend isi file layout/index.html ke dalam file ini-->
+{% extends 'layout/index.html'%}
+
+<!--mengisi variable page_title yang berasal dari web/templates/layout/index.html-->
+{% block page_title %}Halaman Test{% endblock %}
+
+<!--# mengisi variable content yang berasal dari  web/templates/layout/index.html-->
+{% block content %}
+
+<!--table list-->
+    <div class="container">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                     <!--untuk membuat judul sebuah table-->
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Luas</th>
+                    <th>Fasilitas</th>
+                    <th>Aksi</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                 <!--untuk mengawali sebuah for pada sebuah buildings-->
+                {% for bl in buildings %}
+                <tr>
+                    <!--membuat isi dari seuatu baris-->
+                    <td>{{bl.id}}</td>
+                    <td>{{bl.nama}}</td>
+                    <td>{{bl.luas}}</td>
+                    <td>{{bl.fasilitas}}</td>
+                    <td>
+                        <!--button edit-->
+                        <a href="{% url 'building:edit' pk=bl.id %}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        <!--button hapus-->
+                        <a href="{% url 'building:delete' pk=bl.id %}" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+                <!--untuk mengakhiri sebuah for pada sebuah buildings-->
+                {% endfor %}
+            </tbody>  
+        </table>
+        <!--tambah data-->
+        <a href="{% url 'building:add' %}" class="btn btn-primary">Tambah Data</a>
+    </div>
+    <!--untuk mengakhiri sebuah block pada sebuah block-->
+{% endblock %}

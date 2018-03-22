@@ -1,0 +1,90 @@
+<!--# meng extend isi file layout/index.html ke dalam file ini-->
+{% extends 'layout/index.html'%}
+{% load widget_tweaks %}
+
+<!--mengisi variable page_title yang berasal dari web/templates/layout/index.html-->
+{% block page_title %}Halaman Test{% endblock %}
+
+<!--# mengisi variable content yang berasal dari  web/templates/layout/index.html-->
+{% block content %}
+
+<!--table edit-->
+<div class="container">
+     <!--buka tag form, menggunakan class (css) yang ada pada bootstrap, 
+        dengan metode protocol HTTP POST,
+        dengan URL pada bulding save 
+        mengambil url dari building:update, dengan pk=id-->
+    <form class="form-horizontal" method="POST" action="{% url 'building:update' pk=id %}" >
+           <!--csrf token adalah cross site forgery token
+            yang digunakan oleh django untuk  (security) keamanan form-->
+        {% csrf_token %}
+
+        
+        <input type="hidden" value="{{id}}">
+        <div class="form-group">
+            <label class="col-sm-2">
+                <!--django template untuk menampilkan label form dari BuldingForm yang berasal dari View-->
+                {{form.nama.label}}
+                </label>
+            <div class="col-sm-5">
+                <!--django template untuk menampilkan input form dari BuldingForm yang berasal dari View-->
+                <!--add_class adalah django template yang berasal dari module widget_tweaks yang digunakan untuk
+                menambah attribute class pada input form-->
+                {{form.nama | add_class:"form-control"}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2">
+                <!--django template untuk menampilkan label form dari BuldingForm yang berasal dari View-->
+                {{form.luas.label}}
+                </label>
+            <div class="col-sm-5">
+                 <!--django template untuk menampilkan input form dari BuldingForm yang berasal dari View-->
+                <!--add_class adalah django template yang berasal dari module widget_tweaks yang digunakan untuk
+                menambah attribute class pada input form-->
+                {{form.luas | add_class:"form-control"}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2">
+                <!--django template untuk menampilkan label form dari BuldingForm yang berasal dari View-->
+                {{form.fasilitas.label}}
+                </label>
+            <div class="col-sm-5">
+                <!--django template untuk menampilkan input form dari BuldingForm yang berasal dari View-->
+                <!--add_class adalah django template yang berasal dari module widget_tweaks yang digunakan untuk
+                menambah attribute class pada input form-->
+                {{form.fasilitas | add_class:"form-control"}}
+            </div>
+        </div>
+        
+         <div class="form-group">
+            <label class="col-sm-2">
+                 <!--django template untuk menampilkan label form dari BuldingForm yang berasal dari View-->
+                {{form.building.label}}</label>
+            <div class="col-sm-5">
+                 <!--django template untuk menampilkan input form dari BuldingForm yang berasal dari View-->
+                <!--add_class adalah django template yang berasal dari module widget_tweaks yang digunakan untuk
+                menambah attribute class pada input form-->
+                {{form.building}}
+            </div>
+        </div>
+
+        <!--untuk back dan update-->
+        <div class="form-group">
+            <label class="col-sm-2">&nbsp;</label>
+            <div class="col-sm-5">
+                <a href="{% url 'building:list' %}" class="btn btn-info">
+                   <i class="glyphicon glyphicon-arrow-left"></i> Back
+                </a>
+                <button class="btn btn-primary" type="submit">
+                    Update
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--untuk mengakhiri sebuah block pada sebuah block-->
+{% endblock %}

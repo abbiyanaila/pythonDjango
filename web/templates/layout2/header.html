@@ -1,0 +1,29 @@
+<header class="main-header">
+  <!-- Logo -->
+  <a href="index2.html" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini"><b>S</b>SPK</span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg"><b>SPK</b> Anak Autis</span>
+  </a>
+
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top">
+    <!--Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+
+    <div class="pull-right">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="{% url 'login:dologout' %}">
+            <i class="fa fa-power-off"></i> &nbsp;
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+

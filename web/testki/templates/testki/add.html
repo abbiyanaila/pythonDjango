@@ -1,0 +1,67 @@
+
+{% extends 'layout/index.html'%}
+{% load widget_tweaks %}
+
+<!--mengisi variable page_title yang berasal dari web/templates/layout/index.html-->
+{% block page_title %}Halaman Test{% endblock %}
+
+<!--# mengisi variable content yang berasal dari  web/templates/layout/index.html-->
+{% block content %}
+
+
+
+<!--table add-->
+<div class="container">
+
+    {% if mode == 'save' %}
+    <h2>Hasil Perhitungan Luas : {{luas}}</h2>
+    {% endif %}
+
+    <!--buka tag form, menggunakan class (css) yang ada pada bootstrap, 
+        dengan metode protocol HTTP POST,
+        dengan URL pada bulding save -->
+    <form class="form-horizontal" method="POST" action="{% url 'testki:save' %}" >
+        <!--csrf tokena adalah cross site forgery token
+          yang digunakan oleh django untuk  (security) keamanan form-->
+        {% csrf_token %} 
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                <!--django template untuk menampilkan label form dari BuldingForm yang berasal dari View-->
+                {{form.alas.label}}
+            </label>
+            <div class="col-sm-5">
+                <!--django template untuk menampilkan input form dari BuldingForm yang berasal dari View-->
+                <!--add_class adalah django template yang berasal dari module widget_tweaks yang digunakan untuk
+                menambah attribute class pada input form-->
+                {{form.alas | add_class:"form-control"}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                 <!--django template untuk menampilkan label form dari BuldingForm yang berasal dari View-->
+                {{form.tinggi.label}}
+                </label>
+            <div class="col-sm-5">
+                <!--django template untuk menampilkan input form dari BuldingForm yang berasal dari View-->
+                <!--add_class adalah django template yang berasal dari module widget_tweaks yang digunakan untuk
+                menambah attribute class pada input form-->
+                {{form.tinggi | add_class:"form-control"}}
+            </div>
+        </div>
+
+        <!--btn simpan -->
+        <div class="form-group">
+            <label class="col-sm-2">&nbsp;</label>
+            <div class="col-sm-5">
+                <button class="btn btn-primary" type="submit">
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--untuk mengakhiri sebuah block pada sebuah block-->
+{% endblock %}

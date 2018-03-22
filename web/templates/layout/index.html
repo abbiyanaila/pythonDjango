@@ -1,0 +1,18 @@
+<html>
+
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+
+    {% include 'layout/head.html' %}
+</head>
+
+<body class="skin-blue sidebar-mini {% block collapse %}{% endblock %}">
+    <div class="wrapper">
+        {% include 'layout/header.html' %} {% include 'layout/aside.html' %}
+        <div class="content-wrapper">  {% block content %}{% endblock %}
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!--# meng extend isi file layout/index.html ke dalam file ini-->
+{% extends 'layout/index.html'%}
+
+<!--mengisi variable page_title yang berasal dari web/templates/layout/index.html-->
+{% block page_title %}Halaman Test{% endblock %}
+
+<!--# mengisi variable content yang berasal dari  web/templates/layout/index.html-->
+{% block content %}
+<section class="content-header">
+    <h1>
+        Room
+        <small>List</small>
+    </h1>
+</section>
+
+<section class="content">
+
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua">
+                <i class="ion ion-ios-gear-outline" style="padding-top:22px;"></i>
+            </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">CPU Traffic</span>
+                    <span class="info-box-number">90<small>%</small></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red">
+                <i class="fa fa-google-plus" style="padding-top:22px;"></i>
+            </span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Likes</span>
+                    <span class="info-box-number">41,410</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green">
+                <i class="ion ion-ios-cart-outline" style="padding-top:22px;"></i>
+                </span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Sales</span>
+                    <span class="info-box-number">760</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow">
+                <i class="ion ion-ios-people-outline" style="padding-top:22px;"></i>
+            </span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Members</span>
+                    <span class="info-box-number">2,000</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">List Data Ruangan</h3>
+                </div>
+                <div class="box-body">
+                    <div class="container">
+
+                        <table class="table table-bordered table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <!--untuk membuat judul sebuah table-->
+                                    <th>ID</th>
+                                    <th>Nama</th>
+                                    <th>Luas</th>
+                                    <th>Kapasitas</th>
+                                    <th>Bangunan</th>
+                                    <th>Aksi</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--untuk mengawali sebuah for pada sebuah buildings-->
+                                {% for bl in rooms %}
+                                <tr>
+                                    <!--membuat isi dari seuatu baris-->
+                                    <td>{{bl.id}}</td>
+                                    <td>{{bl.nama}}</td>
+                                    <td>{{bl.luas}}</td>
+                                    <td>{{bl.kapasitas}}</td>
+                                    <td>{{bl.building}}</td>
+                                    <td>
+                                        <!--button edit-->
+                                        <a href="{% url 'room:edit' pk=bl.id %}" class="btn btn-warning">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        <!--button hapus-->
+                                        <a href="{% url 'room:delete' pk=bl.id %}" class="btn btn-danger">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <!--untuk mengakhiri sebuah for pada sebuah buildings-->
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <!--tambah data-->
+                        <a href="{% url 'room:add' %}" class="btn btn-primary">Tambah Data</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        $(function () {
+            $('.dataTable').DataTablet
+        });
+    </script>
+
+</section>
+<!--table list-->
+
+<!--untuk mengakhiri sebuah block pada sebuah block-->
+{% endblock %}
